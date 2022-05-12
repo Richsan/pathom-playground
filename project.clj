@@ -6,5 +6,6 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [com.wsscode/pathom "2.4.0"]
                  [clj-http "3.12.3"]
-                 [cheshire "5.10.2"]]
+                 [cheshire "5.10.2"]
+                 [com.wsscode/pathom-viz-connector "2022.02.14"]]
   :repl-options {:init-ns pathom-playground.core})
