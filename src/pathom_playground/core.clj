@@ -13,7 +13,8 @@
                                                      pc/reader2
                                                      pc/open-ident-reader
                                                      p/env-placeholder-reader]
-                           ::p/placeholder-prefixes #{">"}}
+                           ::p/placeholder-prefixes #{">"}
+                           :db                     (poke-resolvers/party)}
               ::p/mutate  pc/mutate
               ::p/plugins [(pc/connect-plugin {::pc/register poke-resolvers/registry}) ;setup connect and use our resolvers
                            p/error-handler-plugin
@@ -35,4 +36,8 @@
                                          :pokemon/id {:pokemon/types [:type/url :type/name]}]}])
   (parser {} [{[:pokemon/name "mankey"] [:pokemon/id {:pokemon/evolves-to [:pokemon/name :pokemon/id]}
                                          :pokemon/id {:pokemon/evolution-chain [:url]}
-                                         :pokemon/id {:pokemon/types [:type/url :type/name]}]}]))
+                                         :pokemon/id {:pokemon/types [:type/url :type/name]}]}])
+  (parser {} '[(add-to-party {:pokemon/id 4})])
+  (parser {} [:my.party/pokemons])
+  (parser {} [{:my.party/pokemons [:pokemon/id :pokemon/name]}])
+  (parser {} '[{(add-to-party {:pokemon/id 3}) [{:my.party/pokemons [:pokemon/id :pokemon/name]}]}]))
